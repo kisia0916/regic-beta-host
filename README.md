@@ -161,4 +161,5 @@ MIT © [Electron React Boilerplate](https://github.com/electron-react-boilerplat
  #   r e g i c - b e t a - h o s t  
  #   r e g i c - b e t a - h o s t  
  #   r e g i c - b e t a - h o s t  
+ #   r e g i c - b e t a - h o s t  
  
