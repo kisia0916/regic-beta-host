@@ -9,7 +9,7 @@
  * `./src/main.js` using webpack. This gives us some performance wins.
  */
 import path from 'path';
-import { app, BrowserWindow, shell, ipcMain } from 'electron';
+import { app, BrowserWindow, shell, ipcMain, Menu } from 'electron';
 import { autoUpdater } from 'electron-updater';
 import log from 'electron-log';
 import MenuBuilder from './menu';
@@ -73,6 +73,10 @@ const createWindow = async () => {
     show: false,
     width: 1024,
     height: 728,
+    minHeight: 728,
+    maxHeight: 728,
+    minWidth: 1024,
+    maxWidth: 1024,
     icon: getAssetPath('icon.png'),
     webPreferences: {
       preload: app.isPackaged
@@ -82,7 +86,6 @@ const createWindow = async () => {
   });
 
   mainWindow.loadURL(resolveHtmlPath('index.html'));
-
   mainWindow.on('ready-to-show', () => {
     if (!mainWindow) {
       throw new Error('"mainWindow" is not defined');
@@ -106,7 +109,7 @@ const createWindow = async () => {
     shell.openExternal(edata.url);
     return { action: 'deny' };
   });
-
+  Menu.setApplicationMenu(null)
   // Remove this if your app does not use auto updates
   // eslint-disable-next-line
   new AppUpdater();
