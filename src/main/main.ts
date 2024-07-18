@@ -14,6 +14,10 @@ import { autoUpdater } from 'electron-updater';
 import log from 'electron-log';
 import MenuBuilder from './menu';
 import { resolveHtmlPath } from './util';
+import { ipcFunction } from './process/ipcFunctions';
+import { store } from './StoreSys/storeMain';
+
+
 
 class AppUpdater {
   constructor() {
@@ -30,6 +34,14 @@ ipcMain.on('ipc-example', async (event, arg) => {
   console.log(msgTemplate(arg));
   event.reply('ipc-example', msgTemplate('pong'));
 });
+store.set("aaa","kkkk")
+
+// ipcMain.on("test",(event:any,arg:any)=>{
+//   const process1 = spawn("cmd")
+//   process1.stdout.on("data",(data)=>{
+//     event.reply("test",data)
+//   })
+// })
 
 if (process.env.NODE_ENV === 'production') {
   const sourceMapSupport = require('source-map-support');
@@ -79,7 +91,7 @@ const createWindow = async () => {
     maxWidth: 1024,
     icon: getAssetPath('icon.png'),
     webPreferences: {
-      preload: app.isPackaged
+     preload: app.isPackaged
         ? path.join(__dirname, 'preload.js')
         : path.join(__dirname, '../../.erb/dll/preload.js'),
     },
@@ -100,7 +112,7 @@ const createWindow = async () => {
   mainWindow.on('closed', () => {
     mainWindow = null;
   });
-
+  
   const menuBuilder = new MenuBuilder(mainWindow);
   menuBuilder.buildMenu();
 
@@ -112,8 +124,15 @@ const createWindow = async () => {
   Menu.setApplicationMenu(null)
   // Remove this if your app does not use auto updates
   // eslint-disable-next-line
+  
+  // mainWindow.webContents.on('did-finish-load', () => {
+  //   mainWindow?.webContents.send("test1","hoooo")
+  // })
   new AppUpdater();
 };
+
+//ipcFunction
+
 
 /**
  * Add event listeners...
@@ -130,6 +149,8 @@ app.on('window-all-closed', () => {
 app
   .whenReady()
   .then(() => {
+  ipcFunction(ipcMain,mainWindow)
+
     createWindow();
     app.on('activate', () => {
       // On macOS it's common to re-create a window in the app when the
@@ -138,3 +159,5 @@ app
     });
   })
   .catch(console.log);
+
+

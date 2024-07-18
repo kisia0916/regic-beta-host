@@ -1,8 +1,11 @@
 import React from 'react'
+import HomePageMain from '../Components/homePageMain/HomePageMain'
 
 function Home() {
   return (
-    <div>Home</div>
+    <div>
+      <HomePageMain/>
+    </div>
   )
 }
 
