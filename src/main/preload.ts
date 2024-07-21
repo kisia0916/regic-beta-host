@@ -6,7 +6,7 @@ import { contextBridge, ipcRenderer, IpcRendererEvent } from 'electron';
 
 
 
-export type Channels = "mk_process"|"process_result"|"test1"|"new_process_created"|"get_machine_token"|"set_machine_token"|"run_command"
+export type Channels = "mk_process"|"process_result"|"test1"|"new_process_created"|"get_machine_token"|"set_machine_token"|"get_input"
 const electronHandler = {
   ipcRenderer: {
     sendMessage(channel: Channels, ...args: unknown[]) {

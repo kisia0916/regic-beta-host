@@ -102,6 +102,8 @@
     "electron-store": "^10.0.0",
     "electron-updater": "^6.1.4",
     "fs": "^0.0.1-security",
+    "node-gyp": "^10.2.0",
+    "node-pty": "^1.0.0",
     "path": "^0.12.7",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
