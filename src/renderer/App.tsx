@@ -23,6 +23,7 @@ window.electron.ipcRenderer.on("new_process_created",(arg:any)=>{
   console.log(arg.data)
   socket.emit("new_process_created",{userId:arg.userId,data:arg.data,machineToken:machineToken})
 })
+
 export default function App() {
   const [isLogin,setIsLogin] = useState<boolean>(false)
   const [machineInfo,setMachineInfo] = useState<any>("")
@@ -33,6 +34,9 @@ export default function App() {
       isFirst.current = false
       window.electron.ipcRenderer.on("process_result",(arg:any)=>{
         socket.emit("process_result",{userId:arg.userId,data:arg.data,machineToken:machineToken})
+      })
+      window.electron.ipcRenderer.on("error",(arg:any)=>{
+        alert("error")
       })
       window.electron.ipcRenderer.sendMessage("get_machine_token","")
       window.electron.ipcRenderer.once("get_machine_token",(arg)=>{

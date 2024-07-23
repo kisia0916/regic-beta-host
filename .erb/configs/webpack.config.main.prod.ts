@@ -21,7 +21,15 @@ const configuration: webpack.Configuration = {
   mode: 'production',
 
   target: 'electron-main',
-
+  module: {
+    rules: [
+        // 既存のルール...
+        {
+            test: /\.node$/,
+            use: 'node-loader',
+        },
+    ],
+  },
   entry: {
     main: path.join(webpackPaths.srcMainPath, 'main.ts'),
     preload: path.join(webpackPaths.srcMainPath, 'preload.ts'),
@@ -78,6 +86,7 @@ const configuration: webpack.Configuration = {
     __dirname: false,
     __filename: false,
   },
+
 };
 
 export default merge(baseConfig, configuration);
