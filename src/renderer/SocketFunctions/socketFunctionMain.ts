@@ -8,4 +8,7 @@ export const socketFunctionMain = (socket:any)=>{
     socket.on("get_input",(data:{command:string,userId:string})=>{
         window.electron.ipcRenderer.sendMessage("get_input",data)
     })
+    socket.on("resize_term",(data:{userId:string,size:number[]})=>{
+        window.electron.ipcRenderer.sendMessage("resize_term",data)
+    })
 }

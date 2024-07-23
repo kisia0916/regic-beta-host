@@ -32,8 +32,7 @@ export default function App() {
     if (isFirst.current){
       isFirst.current = false
       window.electron.ipcRenderer.on("process_result",(arg:any)=>{
-        console.log(decoder.decode(arg.data as Uint8Array))
-        socket.emit("process_result",{userId:arg.userId,data:decoder.decode(arg.data as Uint8Array),machineToken:machineToken})
+        socket.emit("process_result",{userId:arg.userId,data:arg.data,machineToken:machineToken})
       })
       window.electron.ipcRenderer.sendMessage("get_machine_token","")
       window.electron.ipcRenderer.once("get_machine_token",(arg)=>{
