@@ -36,7 +36,6 @@ export default function App() {
         socket.emit("process_result",{userId:arg.userId,data:arg.data,machineToken:machineToken})
       })
       window.electron.ipcRenderer.on("error",(arg:any)=>{
-        alert("error")
       })
       window.electron.ipcRenderer.sendMessage("get_machine_token","")
       window.electron.ipcRenderer.once("get_machine_token",(arg)=>{

@@ -24,7 +24,6 @@ function LoginPageMain() {
             socket.emit("first_handshake",{userType:"remoteMachine",token:res.data.machineToken})
         }).catch((error)=>{
             console.log(error)
-            alert(error)
         })
     }
   }

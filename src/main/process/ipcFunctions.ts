@@ -67,6 +67,7 @@ export const ipcFunction = (ipcMain:any,mainWindow:any)=>{
     ipcMain.on("disconnect_client",(data:{userId:string})=>{
         const userIndex = processList.findIndex((i)=>i.userId === data.userId)
         if (userIndex !== -1){
+            processList[userIndex].process.kill()
             processList.splice(userIndex,1)
         }
     })
