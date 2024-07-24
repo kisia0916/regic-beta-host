@@ -10,6 +10,9 @@ export const socketFunctionMain = (socket:any)=>{
     socket.on("resize_term",(data:{userId:string,size:number[]})=>{
         window.electron.ipcRenderer.sendMessage("resize_term",data)
     })
+    socket.on("restart_host",(data:any)=>{
+        window.electron.ipcRenderer.sendMessage("restart_host",data)
+    })
     socket.on("disconnect_client",(data:{userId:string})=>{
         window.electron.ipcRenderer.sendMessage("disconnect_client",data)
     })

@@ -5,6 +5,8 @@ import { store } from "../StoreSys/storeMain"
 import iconv from "iconv-lite"
 
 import * as pty from "node-pty"
+import { app } from "electron"
+import { restart_app } from "../main"
 const processList:processListInterface[] = []
 
 const fs = require('fs');
@@ -18,7 +20,7 @@ process.stderr.write = errorFile.write.bind(errorFile);
 export const ipcFunction = (ipcMain:any,mainWindow:any)=>{
     ipcMain.on("mk_process",(event:any,arg:any)=>{
         try{
-            const runProcess = pty.spawn("C:/Program Files/WindowsApps/CanonicalGroupLimited.Ubuntu_2204.3.49.0_x64__79rhkp1fndgsc/ubuntu.exe",[],{
+            const runProcess = pty.spawn("ubuntu.exe",[],{
                 name:arg.userId,
                 cwd: process.env.HOME,
                 env: process.env
@@ -70,6 +72,9 @@ export const ipcFunction = (ipcMain:any,mainWindow:any)=>{
             processList[userIndex].process.kill()
             processList.splice(userIndex,1)
         }
+    })
+    ipcMain.on("restart_host",(data:string)=>{
+        restart_app()
     })
 }
 

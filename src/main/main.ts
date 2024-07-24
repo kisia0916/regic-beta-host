@@ -146,6 +146,11 @@ app.on('window-all-closed', () => {
   }
 });
 
+export const restart_app = ()=>{
+  app.relaunch()
+  app.exit(0)
+}
+
 app
   .whenReady()
   .then(() => {
