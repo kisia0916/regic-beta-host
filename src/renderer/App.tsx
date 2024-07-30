@@ -56,6 +56,9 @@ export default function App() {
         }
       })
       socketFunctionMain(socket)
+      setInterval(()=>{
+        socket.emit("interval-ping",{})
+      },30000)
     }
   },[])
 
