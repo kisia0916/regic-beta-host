@@ -142,13 +142,7 @@ app.on('window-all-closed', () => {
   // Respect the OSX convention of having the application in memory even
   // after all windows have been closed
   if (process.platform !== 'darwin') {
-    // app.quit();
-    const tray = new Tray(getAssetPath('icon.png'))
-    const contextMenu = Menu.buildFromTemplate([
-      { label: 'Quit', click: function() { app.quit(); } }
-    ])
-    tray.setToolTip("regic")
-    tray.setContextMenu(contextMenu)
+    app.quit();
   }
 });
 
@@ -161,7 +155,6 @@ app
   .whenReady()
   .then(() => {
   ipcFunction(ipcMain,mainWindow)
-
     createWindow();
     app.on('activate', () => {
       // On macOS it's common to re-create a window in the app when the
