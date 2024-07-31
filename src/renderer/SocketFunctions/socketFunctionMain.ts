@@ -16,7 +16,5 @@ export const socketFunctionMain = (socket:any)=>{
     socket.on("disconnect_client",(data:{userId:string})=>{
         window.electron.ipcRenderer.sendMessage("disconnect_client",data)
     })
-    socket.on("interval-pong",(data:any)=>{
-        console.log("pong")
-    })
+
 }

@@ -1,4 +1,4 @@
-import React, { RefObject, useContext, useRef, useState } from 'react'
+import React, { RefObject, useContext, useEffect, useRef, useState } from 'react'
 import axios from "axios"
 import { serverURL } from '../../APIINFO'
 import { LoginContext, SocketContext } from '../../App'
@@ -11,6 +11,7 @@ function LoginPageMain() {
   const machineStatusFunctions:{setState:any,setInfo:any} = useContext(LoginContext)
   const [doneSetting,setDoneSetting] = useState<Boolean>(false)
   const socket:any = useContext(SocketContext)
+
   const authRequest = ()=>{
     if (machineNameInputRef.current?.value && machineTokenInputRef.current?.value){
         axios.post(`${serverURL}/remotemachine/newmachine`,{

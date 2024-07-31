@@ -55,6 +55,7 @@ if (isDebug) {
   require('electron-debug')();
 }
 
+
 const installExtensions = async () => {
   const installer = require('electron-devtools-installer');
   const forceDownload = !!process.env.UPGRADE_EXTENSIONS;
