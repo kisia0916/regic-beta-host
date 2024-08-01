@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useRef, useState } from 'react'
 import { LoginContext, SocketContext } from '../../App'
+import { reconnectionFun } from '../../SocketFunctions/reconnectionSocket'
 
 function HomePageMain() {
   const machineInfo:any = useContext(LoginContext)
@@ -8,9 +9,7 @@ function HomePageMain() {
   useEffect(()=>{
     if (firstFlg.current){
       firstFlg.current = false
-      socket.on('connect', () => {
-        socket.emit("first_handshake",{userType:"remoteMachine",token:machineInfo.machineInfo.machineToken})
-      });
+      reconnectionFun(socket,machineInfo.machineInfo.machineToken)
     }
   },[])
   return (
