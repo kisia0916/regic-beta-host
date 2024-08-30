@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useRef, useState } from 'react'
 import { LoginContext, SocketContext } from '../../App'
 import { reconnectionFun } from '../../SocketFunctions/reconnectionSocket'
+import "./HomePageMain.css"
 
 function HomePageMain() {
   const machineInfo:any = useContext(LoginContext)
@@ -13,8 +14,9 @@ function HomePageMain() {
     }
   },[])
   return (
-    <div>
-        <span>token:{machineInfo.machineInfo.machineToken}</span>
+    <div className='homePageMain'>
+        {/* <span>token:{machineInfo.machineInfo.machineToken}</span> */}
+        <h1 className='homePageMainText'>REGIC IS ONLINE</h1>
     </div>
   )
 }

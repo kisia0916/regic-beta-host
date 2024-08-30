@@ -70,7 +70,7 @@ export default function App() {
                 <Route path="/" element={isLogin?<Home/>:<Login/>} />
                 <Route path='/login' element={<Login/>}/>
             </Routes>
-          </Router>:<>loading...</>}
+          </Router>:<h1 className='homePageMainText'>loading...</h1>}
         </LoginContext.Provider>
       </SocketContext.Provider>
   );

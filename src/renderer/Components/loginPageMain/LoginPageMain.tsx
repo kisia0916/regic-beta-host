@@ -4,6 +4,7 @@ import { serverURL } from '../../APIINFO'
 import { LoginContext, SocketContext } from '../../App'
 import { Navigate } from 'react-router-dom'
 import { store } from '../../../main/StoreSys/storeMain'
+import "./LoginPageMain.css"
 
 function LoginPageMain() {
   const machineTokenInputRef = useRef<HTMLInputElement>(null)
@@ -29,12 +30,28 @@ function LoginPageMain() {
     }
   }
   return (
-    <div>
-        <input type='text' ref={machineTokenInputRef}/>
-        <input type='text' ref={machineNameInputRef}/>
-        <button onClick={authRequest}>create</button>
-        {doneSetting?<Navigate replace to="/"/>:<></>}
+    // <div>
+    //     <input type='text' ref={machineTokenInputRef}/>
+    //     <input type='text' ref={machineNameInputRef}/>
+    //     <button onClick={authRequest}>create</button>
+    // </div>
+    <>
+    <div className='LoginPageMain'>
+    <div className='loginSpace'>
+        <div className='loginSpaceTop'>
+            <span className='appTitle'>Regic</span>
+        </div>
+        <div className='loginSpaceBottom'>
+          <div className='loginSpaceBottomSpace'>
+              <input type='text' className='loginSpaceInput' placeholder='Machine Token' ref={machineTokenInputRef}/>
+              <input type='text' className='loginSpaceInput' placeholder='UserName' ref={machineNameInputRef}/>
+              <button className='loginSpaceButton' onClick={authRequest}>Create new machine</button>
+          </div>
+        </div>
+        </div>
     </div>
+    {doneSetting?<Navigate replace to="/"/>:<></>}
+    </>
   )
 }
 

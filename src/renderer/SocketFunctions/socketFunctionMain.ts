@@ -1,8 +1,8 @@
 export const socketFunctionMain = (socket:any)=>{
     socket.on("socket-error",(data:string)=>{
     })
-    socket.on("connection_request",(data:{userId:string})=>{
-        window.electron.ipcRenderer.sendMessage("mk_process",{userId:data.userId})
+    socket.on("connection_request",(data:{userId:string,run_sys:string})=>{
+        window.electron.ipcRenderer.sendMessage("mk_process",{userId:data.userId,run_sys:data.run_sys})
     })
     socket.on("get_input",(data:{command:string,userId:string})=>{
         window.electron.ipcRenderer.sendMessage("get_input",data)

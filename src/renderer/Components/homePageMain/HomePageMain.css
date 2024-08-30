@@ -1,0 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=New+Amsterdam&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=New+Amsterdam&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+
+.homePageMain{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+}
+.homePageMainText{
+    color: #22A5A3;
+    font-family: "New Amsterdam", sans-serif;
+    margin: auto;
+    font-size: 350%;
+}

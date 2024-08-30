@@ -20,7 +20,7 @@ process.stderr.write = errorFile.write.bind(errorFile);
 export const ipcFunction = (ipcMain:any,mainWindow:any)=>{
     ipcMain.on("mk_process",(event:any,arg:any)=>{
         try{
-            const runProcess = pty.spawn("ubuntu.exe",[],{
+            const runProcess = pty.spawn(arg.run_sys,[],{
                 name:arg.userId,
                 cwd: process.env.HOME,
                 env: process.env
